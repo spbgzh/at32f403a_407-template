@@ -6,24 +6,12 @@ BUILD_DIR		= Build
 
 ##### Options #####
 
-# Enable printf float %f support, y:yes, n:no
-ENABLE_PRINTF_FLOAT	?= n
-# Build with CMSIS DSP functions, y:yes, n:no
-USE_DSP			?= n
-# Build with FreeRTOS, y:yes, n:no
-USE_FREERTOS	?= n
-# Build with FatFs, y:yes, n:no
-USE_FATFS		?= n
-# Build with Helix MP3 lib, y:yes, n:no
-USE_HELIX		?= n
 # Programmer, jlink or pyocd
 FLASH_PROGRM	?= jlink
 
 
 ##### Toolchains #######
 
-#ARM_TOOCHAIN	?= /opt/gcc-arm/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
-#ARM_TOOCHAIN	?= /opt/gcc-arm/arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi/bin
 ARM_TOOCHAIN	?= /Applications/ArmGNUToolchain/12.2.rel1/arm-none-eabi/bin
 
 # path to JLinkExe
@@ -61,49 +49,5 @@ INCLUDES	:= User \
 			Libraries/cmsis/cm4/device_support \
 			Libraries/drivers/inc \
 			Libraries/bsp/inc
-
-ifeq ($(USE_FREERTOS),y)
-CDIRS		+= Middlewares/FreeRTOS \
-			Middlewares/FreeRTOS/portable/GCC/ARM_CM4F
-
-CFILES		+= Middlewares/FreeRTOS/portable/MemMang/heap_4.c
-
-INCLUDES	+= Middlewares/FreeRTOS/include \
-			Middlewares/FreeRTOS/portable/GCC/ARM_CM4F
-endif
-
-ifeq ($(USE_DSP),y)
-CFILES 		+= Libraries/cmsis/dsp/Source/BasicMathFunctions/BasicMathFunctions.c \
-		Libraries/cmsis/dsp/Source/BayesFunctions/BayesFunctions.c \
-		Libraries/cmsis/dsp/Source/CommonTables/CommonTables.c \
-		Libraries/cmsis/dsp/Source/ComplexMathFunctions/ComplexMathFunctions.c \
-		Libraries/cmsis/dsp/Source/ControllerFunctions/ControllerFunctions.c \
-		Libraries/cmsis/dsp/Source/DistanceFunctions/DistanceFunctions.c \
-		Libraries/cmsis/dsp/Source/FastMathFunctions/FastMathFunctions.c \
-		Libraries/cmsis/dsp/Source/FilteringFunctions/FilteringFunctions.c \
-		Libraries/cmsis/dsp/Source/MatrixFunctions/MatrixFunctions.c \
-		Libraries/cmsis/dsp/Source/StatisticsFunctions/StatisticsFunctions.c \
-		Libraries/cmsis/dsp/Source/SupportFunctions/SupportFunctions.c \
-		Libraries/cmsis/dsp/Source/SVMFunctions/SVMFunctions.c \
-		Libraries/cmsis/dsp/Source/TransformFunctions/TransformFunctions.c
-
-INCLUDES	+= Libraries/cmsis/dsp/PrivateInclude \
-			Libraries/cmsis/dsp/ComputeLibrary/Include
-endif
-
-ifeq ($(USE_FATFS),y)
-CDIRS		+= Middlewares/FatFs/source
-
-INCLUDES	+= Middlewares/FatFs/source
-endif
-
-ifeq ($(USE_HELIX),y)
-CDIRS		+= Middlewares/Helix \
-		Middlewares/Helix/real
-
-INCLUDES	+= Middlewares/Helix \
-		Middlewares/Helix/pub \
-		Middlewares/Helix/real
-endif
 
 include ./rules.mk

@@ -52,10 +52,6 @@ TGT_LDFLAGS += $(ARCH_FLAGS) -specs=nano.specs -specs=nosys.specs -static -lc -l
 				-Wl,--print-memory-usage \
 				-Wl,--no-warn-rwx-segments
 
-ifeq ($(ENABLE_PRINTF_FLOAT),y)
-TGT_LDFLAGS	+= -u _printf_float
-endif
-
 # include paths
 TGT_INCFLAGS := $(addprefix -I $(TOP)/, $(INCLUDES))
 

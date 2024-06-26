@@ -47,11 +47,11 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .ext_code :
+  .ext_flash :
   {
-    *(.ext_code)
-    *(.ext_code*)
-  } > IROM2
+    *(.ext_flash)
+    *(.ext_flash*)
+  } >IROM2
 
   /* The program code and other data goes into FLASH */
   .text :

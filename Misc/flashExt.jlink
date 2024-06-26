@@ -1,4 +1,4 @@
-erase
+section
 loadfile Build/app.hex 0x08400000 noreset
 reset
 exit
