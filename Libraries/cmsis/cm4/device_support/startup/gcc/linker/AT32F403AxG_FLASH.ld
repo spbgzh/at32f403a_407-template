@@ -33,6 +33,7 @@ MEMORY
 {
 FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 1000K
 RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 96K
+IROM2 (rx)      : ORIGIN = 0x08400000, LENGTH = 16M
 }
 
 /* Define output sections */
@@ -45,6 +46,12 @@ SECTIONS
     KEEP(*(.isr_vector)) /* Startup code */
     . = ALIGN(4);
   } >FLASH
+
+  .ext_code :
+  {
+    *(.ext_code)
+    *(.ext_code*)
+  } > IROM2
 
   /* The program code and other data goes into FLASH */
   .text :

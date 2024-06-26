@@ -17,28 +17,29 @@ USE_FATFS		?= n
 # Build with Helix MP3 lib, y:yes, n:no
 USE_HELIX		?= n
 # Programmer, jlink or pyocd
-FLASH_PROGRM	?= pyocd
+FLASH_PROGRM	?= jlink
 
 
 ##### Toolchains #######
 
 #ARM_TOOCHAIN	?= /opt/gcc-arm/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
 #ARM_TOOCHAIN	?= /opt/gcc-arm/arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi/bin
-ARM_TOOCHAIN	?= /opt/gcc-arm/arm-gnu-toolchain-12.2.mpacbti-bet1-x86_64-arm-none-eabi/bin
+ARM_TOOCHAIN	?= /Applications/ArmGNUToolchain/12.2.rel1/arm-none-eabi/bin
 
 # path to JLinkExe
-JLINKEXE		?= /opt/SEGGER/JLink/JLinkExe
-JLINK_DEVICE	?= AT32F403AVGT7
+JLINKEXE		?= /Applications/SEGGER/JLink_V794e/JLinkExe 
+JLINK_DEVICE	?= AT32F403ACGU7
+JLINK_EXT_DEVICE?= AT32F403A_EXT_TYPE2_REAMP1_16MB
 # path to PyOCD
 PYOCD_EXE		?= pyocd
-PYOCD_DEVICE	?= _at32f403avgt7
+PYOCD_DEVICE	?= _at32f403acgu7
 
 ##### Paths ############
 
 # Link descript file for this chip
 LDSCRIPT		= Libraries/cmsis/cm4/device_support/startup/gcc/linker/AT32F403AxG_FLASH.ld
 # Library build flags
-LIB_FLAGS		= USE_STDPERIPH_DRIVER AT32F403AVGT7
+LIB_FLAGS		= USE_STDPERIPH_DRIVER AT32F403ACGU7
 
 # C source folders
 CDIRS	:= User \
