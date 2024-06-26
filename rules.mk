@@ -38,7 +38,7 @@ ARCH_FLAGS	:= -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16
 DEBUG_FLAGS ?= -gdwarf-3
 
 # c flags
-OPT			?= -Oz
+OPT			?= -O3
 CSTD		?= -std=c99
 TGT_CFLAGS 	+= $(ARCH_FLAGS) $(DEBUG_FLAGS) $(OPT) $(CSTD) $(addprefix -D, $(LIB_FLAGS)) -Wall -ffunction-sections -fdata-sections
 
