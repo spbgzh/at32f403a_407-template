@@ -52,14 +52,16 @@
  * @param  none
  * @retval none
  */
-void system_clock_config(void) {
+void system_clock_config(void)
+{
   /* reset crm */
   crm_reset();
 
   crm_clock_source_enable(CRM_CLOCK_SOURCE_HEXT, TRUE);
 
   /* wait till hext is ready */
-  while (crm_hext_stable_wait() == ERROR) {
+  while (crm_hext_stable_wait() == ERROR)
+  {
   }
 
   /* config pll clock resource */
@@ -73,7 +75,8 @@ void system_clock_config(void) {
   crm_clock_source_enable(CRM_CLOCK_SOURCE_PLL, TRUE);
 
   /* wait till pll is ready */
-  while (crm_flag_get(CRM_PLL_STABLE_FLAG) != SET) {
+  while (crm_flag_get(CRM_PLL_STABLE_FLAG) != SET)
+  {
   }
 
   /* config ahbclk */
@@ -92,7 +95,8 @@ void system_clock_config(void) {
   crm_sysclk_switch(CRM_SCLK_PLL);
 
   /* wait till pll is used as system clock source */
-  while (crm_sysclk_switch_status_get() != CRM_SCLK_PLL) {
+  while (crm_sysclk_switch_status_get() != CRM_SCLK_PLL)
+  {
   }
 
   /* disable auto step mode */

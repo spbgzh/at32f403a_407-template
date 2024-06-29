@@ -5,7 +5,8 @@
 
 #define USART_RECEVIE_LEN 32
 
-struct Receiver_Struct {
+struct Receiver_Struct
+{
   uint8_t rxbuf[USART_RECEVIE_LEN];
   uint8_t state;
   uint16_t len;

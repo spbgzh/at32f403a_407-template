@@ -1,7 +1,8 @@
 #include "spim.h"
 #include "at32f403a_407.h"
 
-void spim_init(void) {
+void spim_init(void)
+{
   gpio_init_type gpio_init_struct;
 
   /* enable the clock */
