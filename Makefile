@@ -31,23 +31,23 @@ LIB_FLAGS		= USE_STDPERIPH_DRIVER AT32F403ACGU7
 
 # C source folders
 CDIRS	:= User \
+		User/src \
 		Libraries/cmsis/cm4/device_support \
-		Libraries/drivers/src \
-		Libraries/bsp/src
+		Libraries/drivers/src 
 		
 # C source files (if there are any single ones)
 CFILES := 
 
 # ASM source folders
-ADIRS	:= User
+ADIRS	:= User/src
 # ASM single files
 AFILES	:= Libraries/cmsis/cm4/device_support/startup/gcc/startup_at32f403a_407.s
 
 # Include paths
 INCLUDES	:= User \
+			User/inc \
 			Libraries/cmsis/cm4/core_support \
 			Libraries/cmsis/cm4/device_support \
-			Libraries/drivers/inc \
-			Libraries/bsp/inc
+			Libraries/drivers/inc 
 
 include ./rules.mk

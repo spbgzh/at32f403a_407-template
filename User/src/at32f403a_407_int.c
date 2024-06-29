@@ -26,12 +26,13 @@
 
 /* includes ------------------------------------------------------------------*/
 #include "at32f403a_407_int.h"
-
+#include "at32f403a_407.h"
+#include "usart.h"
 /** @addtogroup AT32F403A_periph_examples
   * @{
   */
 
-/** @addtogroup 403A_SDIO_sdio_fatfs
+/** @addtogroup 403A_GPIO_led_toggle
   * @{
   */
 
@@ -132,6 +133,26 @@ void SysTick_Handler(void)
 {
 }
 
+void USART1_IRQHandler(void) {
+  uint8_t clear;
+  if (usart_flag_get(USART1, USART_IDLEF_FLAG) != RESET) // USART1总线空闲
+  {
+    clear = USART1->sts; // USART1清除空闲中断标志位
+    clear = USART1->dt;  // USART1清除空闲中断标志位
+    clear &= 0;
+    Receiver.state = 1; // USART1接收完成标志位
+
+    Receiver.len = USART_RECEVIE_LEN - dma_data_number_get(DMA1_CHANNEL5);
+		
+		// handle rx data
+    usartdmasend(Receiver.rxbuf, Receiver.len);
+		
+    Receiver.len = 0;
+    Receiver.state = 0;
+
+    usartdmarecv(Receiver.rxbuf, USART_RECEVIE_LEN);
+  }
+}
 
 /**
   * @}
